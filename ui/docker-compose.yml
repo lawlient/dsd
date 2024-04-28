@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  dsdui:
+    container_name: dsdui
+    image: node:latest
+    restart: unless-stopped
+    ports:
+      - 1923:5173
+    volumes:
+      - ./:/app
+    working_dir: /app
+    entrypoint: "npm run dev -- --host"
+    tty: true
+    networks:
+      - pro_net
+
+networks:
+  pro_net:
+    name: pro_net
+    external: true

@@ -1,0 +1,24 @@
+version: "3"
+
+
+services:
+  dsd:
+    container_name: "dsd"
+    # image: "golang:alpine"
+    build: .
+    ports:
+      - 2247:2247
+    volumes:
+      - ./:/app
+    working_dir: /app
+    entrypoint: "go run ."
+    restart: unless-stopped
+    tty: true
+    networks:
+      - pro_net
+
+
+networks:
+  pro_net:
+    name: pro_net
+    external: true
